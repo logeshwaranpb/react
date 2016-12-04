@@ -1,0 +1,12 @@
+a {
+    cursor: pointer;
+}
+
+.brand-logo {
+    height: 100%;
+    padding: 5px 0 5px 15px !important;
+}
+
+.brand-logo img {
+    height: 100%;
+}

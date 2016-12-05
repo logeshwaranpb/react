@@ -1,7 +1,7 @@
 {
-    "name": "bugtracker",
+    "name": "react",
     "version": "1.0.0",
-    "description": "",
+    "description": "React Application",
     "main": "webapp.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,9 +9,10 @@
         "babel": "babel --presets es2015 webapp.js --out-file app.js --source-maps inline --watch",
         "node": "node app.js"
     },
-    "author": "Anthony Lapenna <lapenna.anthony@gmail.com>",
+    "author": "Logeshwaran Periyasamy <logu.vkl@gmail.com>",
     "license": "MIT",
     "dependencies": {
+        "axios": "^0.15.3",
         "body-parser": "^1.15.0",
         "express": "^4.13.4",
         "lodash": "^4.17.2",

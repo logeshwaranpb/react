@@ -1,49 +1,37 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import axios from 'axios';
 import './list.css';
 
 class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            employees: [{
-                firstname: 'Employee',
-                lastname: '1',
-                id: '100001',
-                email: 'employee1@test.com',
-                address: 'address',
-                gender: 'male',
-                username: 'employee1',
-                password: 'password'
-            }, {
-                firstname: 'Employee',
-                lastname: '2',
-                id: '100002',
-                email: 'employee2@test.com',
-                address: 'address',
-                gender: 'female',
-                username: 'employee2',
-                password: 'password'
-            }]
+            employees: []
         };
     }
 
-    render() {
-        var rows = [];
-        _.each(this.state.employees, (value, index) => {
-            rows.push(
-                <tr key={value.id}>
-                    <td className="center-align">1</td>
-                    <td>Employee 1</td>
-                    <td className="center-align">100001</td>
-                    <td>employee1@test.com</td>
-                    <td className="center-align">
-                        <a className="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit"><i className="material-icons">mode_edit</i></a>
-                        <a className="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete"><i className="material-icons">delete</i></a>
-                    </td>
-                </tr>
-            );
+    componentDidMount() {
+        axios.get(`employees`).then(res => {
+            this.setState({ employees: res.data });
+        }).catch(err => {
+            console.log(err);
         });
+    }
+
+    componentWillUnmount() {
+        this.setState({ employees: [] });
+    }
+
+    remove(id) {
+        axios.delete(`employee/` + id).then(res => {
+            this.setState({ employees: res.data });
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    render() {
         return (
             <main>
                 <div className="container">
@@ -61,7 +49,18 @@ class List extends Component {
                                 <th className="center-align" data-field="action">Action</th>
                             </tr>
                         </thead>
-                        <tbody>{rows}</tbody>
+                        <tbody>{this.state.employees.map((employee, index) => {
+                            return (<tr key={employee.id}>
+                                <td className="center-align">{index + 1}</td>
+                                <td>{employee.firstname} {employee.lastname}</td>
+                                <td className="center-align">{employee.id}</td>
+                                <td>{employee.email}</td>
+                                <td className="center-align">
+                                    <a className="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit"><i className="material-icons">mode_edit</i></a>
+                                    <a className="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete" id={employee.id} onClick={(e) => this.remove(employee.id)}><i className="material-icons">delete</i></a>
+                                </td>
+                            </tr>);
+                        })}</tbody>
                     </table>
                 </div>
             </main>

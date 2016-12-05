@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import _ from 'lodash';
 
 const app = express();
 app.use(bodyParser.json());
@@ -41,6 +42,10 @@ app.get('/', (req, res) => {
 
 app.get('/employees', (req, res) => {
     res.json(employees);
+});
+
+app.get('/employee/:id', (req, res) => {
+    res.json(_.find(employees, { id: req.params.id }));
 });
 
 app.post('/employee', (req, res) => {

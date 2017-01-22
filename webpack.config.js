@@ -3,25 +3,20 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: [
-        'webpack-dev-server/client?http://0.0.0.0:8080',
-        'webpack/hot/only-dev-server',
         './src/index.jsx'
     ],
-
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js',
         publicPath: '/'
     },
-
+    watch: true,
     plugins: [
         new webpack.NoErrorsPlugin()
     ],
-
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
-
     module: {
         loaders: [{
             test: /\.jsx$/,
@@ -45,7 +40,6 @@ module.exports = {
             loader: 'url?limit=10000&mimetype=image/svg+xml'
         }]
     },
-
     devServer: {
         historyApiFallback: true,
         contentBase: 'public/',

@@ -1,0 +1,15 @@
+a {
+    cursor: pointer;
+}
+
+.employee-table a {
+    color: grey;
+}
+
+.employee-table .valign-wrapper {
+    height: 225px;
+}
+
+.employee-table .valign-wrapper .valign {
+    width: 100%;
+}

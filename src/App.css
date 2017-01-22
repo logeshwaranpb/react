@@ -5,16 +5,3 @@ a {
 main {
     flex: 1 0 auto;
 }
-
-.brand-logo {
-    height: 100%;
-    padding: 5px 0 5px 15px !important;
-}
-
-.brand-logo img {
-    height: 100%;
-}
-
-.employee-table a {
-    color: grey;
-}

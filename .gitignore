@@ -1,2 +1,13 @@
+# Excluded App files
 public/bundle.js
+app.js
+
+# Dependency directories
+node_modules
+
+# Editor Configs
+.vscode
+
+# Logs
 *.log
+npm-debug.log*
